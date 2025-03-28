@@ -1,0 +1,35 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "proseWrap": "never",
+  "endOfLine": "lf",
+  "printWidth": 80,
+  "jsxSingleQuote": false,
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "document.ejs",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ],
+  "importOrder": ["^react", "<THIRD_PARTY_MODULES>", "^@/.*$", "^[.]", "^$"],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true,
+  "importOrderCaseInsensitive": true,
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "tsx",
+    "json",
+    "classProperties",
+    "decorators-legacy"
+  ],
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}

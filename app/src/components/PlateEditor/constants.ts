@@ -1,0 +1,10 @@
+export const MARK_BOLD = 'bold';
+export const MARK_ITALIC = 'italic';
+export const MARK_UNDERLINE = 'underline';
+export const MARK_FONT_SIZE = 'fontSize';
+export const MARK_COLOR = 'color';
+export const MARK_BG_COLOR = 'backgroundColor';
+export const KEY_ALIGN = 'align';
+export const KEY_EMOJI = 'emoji';
+export const ELEMENT_IMAGE = 'img';
+export const KEY_HISTORY = 'history';

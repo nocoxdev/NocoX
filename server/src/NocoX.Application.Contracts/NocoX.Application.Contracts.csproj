@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NocoX</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NocoX.Domain.Shared\NocoX.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.3" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="9.1.0" />
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="9.1.0" />
+    <PackageReference Include="Volo.Abp.ObjectExtending" Version="9.1.0" />
+  </ItemGroup>
+
+</Project>
