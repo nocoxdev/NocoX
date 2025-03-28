@@ -31,11 +31,11 @@ public class AppReleaseController(IAppReleaseAppService appReleaseAppService) : 
         return appReleaseAppService.GetAync(id);
     }
 
-    [HttpGet]
+    [HttpPost]
     [Route("getPageList")]
     [Permission(ReleaseAppPermissions.View)]
     public Task<DataResult<PagedResultDto<AppReleaseGetDto>>> GetPageList(
-        [FromQuery] QueryPageListParamsInput input
+        [FromBody] QueryPageListParamsInput input
     )
     {
         return appReleaseAppService.GetPageListAsync(input);
