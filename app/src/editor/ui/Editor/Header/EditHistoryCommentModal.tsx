@@ -33,7 +33,7 @@ const EditHistoryCommentModal = (props: EditHistoryCommentModalProps) => {
   return (
     <EnhancedModal
       title={t('Comment')}
-      destroyOnClose
+      destroyOnHidden
       onClose={onClose}
       {...restProps}
     >

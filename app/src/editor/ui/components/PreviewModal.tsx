@@ -33,7 +33,7 @@ const PreviewModal = (props: PreviewModalProps) => {
         },
       }}
       width="95vw"
-      destroyOnClose
+      destroyOnHidden
     >
       <StyledIframe src={`/preview/${app.id}`} />
     </Modal>

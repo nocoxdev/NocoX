@@ -24,9 +24,9 @@ export const variant: WidgetPropConfig = {
     optionType: 'button',
     buttonStyle: 'solid',
     options: [
-      { label: '边框', value: 'outlined' },
-      { label: '无框', value: 'borderless' },
-      { label: '填充', value: 'filled' },
+      { label: t('Outlined'), value: 'outlined' },
+      { label: t('Borderless'), value: 'borderless' },
+      { label: t('Filled'), value: 'filled' },
     ],
   },
 };
@@ -59,7 +59,7 @@ export const placeholder: WidgetPropConfig = {
   control: 'input',
   label: t('Placeholder'),
   helpText: t('Please enter a placeholder'),
-  defaultValue: '请输入...',
+  defaultValue: '',
 };
 
 export const defaultValue: WidgetPropConfig = {
@@ -77,9 +77,9 @@ export const size: WidgetPropConfig = {
     optionType: 'button',
     buttonStyle: 'solid',
     options: [
-      { label: '小', value: 'small' },
-      { label: '中', value: 'middle' },
-      { label: '大', value: 'large' },
+      { label: t('Small'), value: 'small' },
+      { label: t('Middle'), value: 'middle' },
+      { label: t('Large'), value: 'large' },
     ],
   },
 };

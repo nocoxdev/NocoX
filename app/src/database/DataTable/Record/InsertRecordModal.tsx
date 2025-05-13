@@ -27,7 +27,7 @@ const InsertRecordModal = observer((props: InsertRecordModalProps) => {
       onClose={onClose}
       title={t('Insert record')}
       width={500}
-      destroyOnClose
+      destroyOnHidden
     >
       {columnStore.columns.filter((item) => !item.info.system).length > 0 ? (
         <RecordForm

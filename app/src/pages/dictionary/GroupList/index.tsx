@@ -78,7 +78,7 @@ const GroupList = () => {
         </Skeleton>
       </StyledListContainer>
       <CreateGroupModal
-        destroyOnClose
+        destroyOnHidden
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
         onOk={() => {

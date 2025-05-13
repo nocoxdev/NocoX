@@ -20,7 +20,7 @@ const PageFormModal = (props: PageFormModalProps) => {
   const { initialValues, submiting, onSubmit, onClose, ...restProps } = props;
 
   return (
-    <EnhancedModal {...restProps} onClose={onClose} destroyOnClose width={480}>
+    <EnhancedModal {...restProps} onClose={onClose} destroyOnHidden width={480}>
       <Form
         layout="vertical"
         initialValues={{ path: '/', ...initialValues }}

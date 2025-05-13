@@ -74,7 +74,7 @@ const Right = observer(() => {
         </Flex>
         <AppReleaseModal
           open={releaseModalOpen}
-          destroyOnClose
+          destroyOnHidden
           onClose={() => setReleaseModalOpen(false)}
           onOk={() => setReleaseModalOpen(false)}
         />

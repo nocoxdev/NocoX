@@ -201,7 +201,7 @@ const AppHistoryList = observer(() => {
 
       {editRecord && (
         <EditHistoryCommentModal
-          destroyOnClose
+          destroyOnHidden
           history={editRecord}
           onOk={() => {
             setEditRecord(undefined);

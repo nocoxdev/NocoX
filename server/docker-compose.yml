@@ -1,0 +1,30 @@
+
+version: '3.4'
+
+services:
+  nocox.httpapi.host:
+    image: ${DOCKER_REGISTRY-}nocoxhttpapihost
+    build:
+      context: .
+      dockerfile: src/NocoX.HttpApi.Host/Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - postgres
+    environment:
+      - ConnectionStrings__Default=Host=postgres;Port=5432;Database=NocoX;Username=postgres;Password=123456
+
+  postgres:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: NocoX
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

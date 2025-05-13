@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NocoX.AppDatas;
 using NocoX.AppDatas.Dtos;
 using NocoX.Common.Dtos;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 
 namespace NocoX.Apps;
@@ -52,7 +52,9 @@ public class AppDataController(IAppDataAppService appDataAppService) : NocoXCont
 
     [HttpPost]
     [Route("getPageList")]
-    public async Task<DataResult<PagedResultDto<object>>> GetPageList([FromBody] DataGetPageListInput input)
+    public async Task<DataResult<PagedResultDto<object>>> GetPageList(
+        [FromBody] DataGetPageListInput input
+    )
     {
         var result = await appDataAppService.GetPageListAsync(input);
         return result;

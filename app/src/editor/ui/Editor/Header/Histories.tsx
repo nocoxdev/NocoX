@@ -18,7 +18,7 @@ const HistoryActions = () => {
         open={historyVersionOpen}
         onClose={() => setHistoryVersionOpen(false)}
         width={1000}
-        destroyOnClose
+        destroyOnHidden
       >
         <AppHistoryList />
       </EnhancedModal>

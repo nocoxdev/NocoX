@@ -262,7 +262,7 @@ const Releases = () => {
       />
       {rollbackId && (
         <RollbackModal
-          destroyOnClose
+          destroyOnHidden
           id={rollbackId}
           open={!!rollbackId}
           onClose={() => setRollbackId('')}

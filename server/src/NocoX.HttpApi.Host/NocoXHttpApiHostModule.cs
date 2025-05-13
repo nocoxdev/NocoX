@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using NocoX.Account;
 using NocoX.Resource;
 using Volo.Abp;
@@ -20,8 +19,6 @@ using Volo.Abp.BlobStoring;
 using Volo.Abp.BlobStoring.FileSystem;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
-using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.Uow;
 
 namespace NocoX;
 

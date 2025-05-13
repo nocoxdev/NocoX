@@ -24,6 +24,10 @@ const routes: RouteObject[] = [
   },
   {
     path: '/',
+    // loader: async () => {
+    //   await new Promise((resolve) => setTimeout(resolve, 1000));
+    //   return null;
+    // },
     children: [
       {
         path: '',

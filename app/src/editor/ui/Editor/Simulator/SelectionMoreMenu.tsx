@@ -91,7 +91,7 @@ const SelectionMoreMenu = observer((props: SelectionMoreMenuProps) => {
         cover={cover}
         maskClosable={false}
         open={blockModalOpen}
-        destroyOnClose
+        destroyOnHidden
         onClose={() => setBlockModalOpen(false)}
       />
     </Fragment>

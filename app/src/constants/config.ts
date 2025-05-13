@@ -3,4 +3,5 @@ export const THEME_KEY = 'theme';
 export const LNG_KEY = 'lng';
 export const CANVAS_ID = 'ld-canvas';
 export const ADMIN_BASE_URL = '';
+// export const HOST = '';
 export const HOST = 'https://localhost:44375';

@@ -6,6 +6,7 @@ import type {
   UserPermissionResponse,
 } from '@/services/responses';
 import type { ArrayValues } from '@/types';
+import { getRedirectUrl } from '@/utils/helpers';
 import { BaseStore } from './BaseStore';
 
 const requestKeys = [
@@ -138,6 +139,10 @@ export class User extends BaseStore<ArrayValues<typeof requestKeys>> {
     if (localStorage.getItem(TOKEN_KEY)) {
       await this.fetchProfile();
       await this.fetchPermissions();
+    } else {
+      if (!window.location.pathname.includes('/login')) {
+        window.location.href = getRedirectUrl('login');
+      }
     }
   }
 }

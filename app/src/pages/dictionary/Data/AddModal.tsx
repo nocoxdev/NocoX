@@ -49,7 +49,7 @@ const AddModal = (props: AddModalProps) => {
       contentStyle={{ paddingTop: 0 }}
       onClose={onClose}
       wrapperStyle={{ paddingBottom: 0 }}
-      destroyOnClose
+      destroyOnHidden
       {...restProps}
     >
       <DictionaryForm

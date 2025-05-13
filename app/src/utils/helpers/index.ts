@@ -16,3 +16,4 @@ export * from './stringHelper';
 export * from './dom';
 export * from './genAppRandomColor';
 export * from './getRenderPropValue';
+export * from './urlHelper';

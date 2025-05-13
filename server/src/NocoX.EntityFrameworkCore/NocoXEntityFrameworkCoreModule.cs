@@ -2,12 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NocoX.AppDatas;
+using NocoX.Dapper.AppDatas;
 using NocoX.Dapper.MySql;
 using NocoX.Dapper.PostgreSQL;
 using NocoX.Dapper.Sql;
 using NocoX.Dapper.SQLite;
 using NocoX.EntityFrameworkCore;
-using NocoX.EntityFrameworkCore.Dapper.AppDatas;
 using NocoX.EntityFrameworkCore.Dapper.Sql;
 using NocoX.EntityFrameworkCore.Dapper.SqlServer;
 using Volo.Abp.Dapper;
@@ -31,7 +31,10 @@ public class NocoXEntityFrameworkCoreModule : AbpModule
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
-        Enum.TryParse(configuration.GetValue<string>(NocoXDbProperties.DbType), out DatabaseType dbType);
+        Enum.TryParse(
+            configuration.GetValue<string>(NocoXDbProperties.DbType),
+            out DatabaseType dbType
+        );
 
         if (dbType == DatabaseType.Postgres)
         {
@@ -59,7 +62,10 @@ public class NocoXEntityFrameworkCoreModule : AbpModule
         });
 
         var configuration = context.Services.GetConfiguration();
-        Enum.TryParse(configuration.GetValue<string>(NocoXDbProperties.DbType), out DatabaseType dbType);
+        Enum.TryParse(
+            configuration.GetValue<string>(NocoXDbProperties.DbType),
+            out DatabaseType dbType
+        );
 
         Configure<AbpDbContextOptions>(options =>
         {

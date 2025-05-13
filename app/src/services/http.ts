@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ADMIN_BASE_URL, HOST, TOKEN_KEY } from '@/constants';
 import { globalContextValue } from '@/context/GlobalContext';
+import { getRedirectUrl } from '@/utils/helpers';
 
 const http = axios.create({
   baseURL: `${HOST}/api`,
@@ -32,7 +33,7 @@ http.interceptors.response.use(
         globalContextValue.message.error(error.response.data.message);
 
         setTimeout(() => {
-          window.location.href = `${ADMIN_BASE_URL}/login?redirect=${encodeURIComponent(window.location.href)}`;
+          window.location.href = getRedirectUrl('login');
         }, 2000);
       } else {
         const message =

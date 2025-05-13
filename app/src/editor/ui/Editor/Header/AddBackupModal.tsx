@@ -33,7 +33,7 @@ const AddBackupModal = (props: AddBackupModalProps) => {
   return (
     <EnhancedModal
       title={t('Backup')}
-      destroyOnClose
+      destroyOnHidden
       onClose={onClose}
       {...restProps}
     >

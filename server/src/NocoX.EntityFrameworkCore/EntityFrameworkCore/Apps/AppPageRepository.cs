@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using NocoX.Apps;
 using NocoX.EntityFrameworkCore.Common;
 using Microsoft.EntityFrameworkCore;
-using Polly;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace NocoX.EntityFrameworkCore.Apps;

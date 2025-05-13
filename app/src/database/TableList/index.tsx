@@ -42,7 +42,7 @@ const TableList = () => {
       </StyledLeftPanelHeader>
       <List />
       <CreateTableModal
-        destroyOnClose
+        destroyOnHidden
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
         onOk={() => {

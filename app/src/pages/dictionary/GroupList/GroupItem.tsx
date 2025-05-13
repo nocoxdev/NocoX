@@ -126,7 +126,7 @@ const GroupItem = (props: GroupItemProps) => {
         </StyledActions>
       </StyledContainer>
       <EditGroupModal
-        destroyOnClose
+        destroyOnHidden
         open={editModalOpen}
         initialValues={data}
         onOk={() => setEditModalOpen(false)}

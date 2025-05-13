@@ -7,13 +7,14 @@ using Dapper;
 using NocoX.AppDatas;
 using NocoX.Common;
 using NocoX.Database;
+using NocoX.EntityFrameworkCore;
 using NocoX.EntityFrameworkCore.Dapper.Sql;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories.Dapper;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Users;
 
-namespace NocoX.EntityFrameworkCore.Dapper.AppDatas;
+namespace NocoX.Dapper.AppDatas;
 
 public class AppDataDapperRepository(
     IDbContextProvider<NocoXDbContext> dbContextProvider,
@@ -32,7 +33,7 @@ public class AppDataDapperRepository(
         {
             var data = new Dictionary<string, object?>
             {
-                { TableSystemColumns.IsDeleted.ColumnName, true }
+                { TableSystemColumns.IsDeleted.ColumnName, true },
             };
 
             if (columns.HasDeletedTime())
@@ -59,7 +60,11 @@ public class AppDataDapperRepository(
         }
     }
 
-    public virtual async Task<object?> GetByIdAsync(string tableName, Guid id, List<ColumnInfo> columns)
+    public virtual async Task<object?> GetByIdAsync(
+        string tableName,
+        Guid id,
+        List<ColumnInfo> columns
+    )
     {
         var sb = new StringBuilder();
 
@@ -92,7 +97,11 @@ public class AppDataDapperRepository(
         );
     }
 
-    public virtual async Task<object?> GetByUserAsync(string tableName, Guid userId, List<ColumnInfo> columns)
+    public virtual async Task<object?> GetByUserAsync(
+        string tableName,
+        Guid userId,
+        List<ColumnInfo> columns
+    )
     {
         if (!columns.HasCreatedBy())
         {
@@ -154,7 +163,11 @@ public class AppDataDapperRepository(
         var sql = sqlGenerator.GetCountSql(querySql);
 
         var connection = await GetDbConnectionAsync();
-        return await connection.ExecuteScalarAsync<int>(sql, parameters, await GetDbTransactionAsync());
+        return await connection.ExecuteScalarAsync<int>(
+            sql,
+            parameters,
+            await GetDbTransactionAsync()
+        );
     }
 
     public virtual async Task<List<object>> GetListAsync(
@@ -195,7 +208,11 @@ public class AppDataDapperRepository(
                 : orderSql
         );
 
-        var result = await connection.QueryAsync<object>(sb.ToString(), parameters, await GetDbTransactionAsync());
+        var result = await connection.QueryAsync<object>(
+            sb.ToString(),
+            parameters,
+            await GetDbTransactionAsync()
+        );
 
         return [.. result];
     }
@@ -242,19 +259,31 @@ public class AppDataDapperRepository(
         var connection = await GetDbConnectionAsync();
 
         var countSql = sqlGenerator.GetCountSql(querySql);
-        var total = await connection.ExecuteScalarAsync<int>(countSql, parameters, await GetDbTransactionAsync());
+        var total = await connection.ExecuteScalarAsync<int>(
+            countSql,
+            parameters,
+            await GetDbTransactionAsync()
+        );
 
         var (pagingSql, pagingParameters) = sqlGenerator.GetPagingSqlAndParams(pageIndex, pageSize);
 
         sb.Append(pagingSql);
         parameters.AddDynamicParams(pagingParameters);
 
-        var items = await connection.QueryAsync<object>(sb.ToString(), parameters, await GetDbTransactionAsync());
+        var items = await connection.QueryAsync<object>(
+            sb.ToString(),
+            parameters,
+            await GetDbTransactionAsync()
+        );
 
         return (items.ToList(), total);
     }
 
-    public virtual async Task InsertAsync(string tableName, Dictionary<string, object?> data, List<ColumnInfo> columns)
+    public virtual async Task InsertAsync(
+        string tableName,
+        Dictionary<string, object?> data,
+        List<ColumnInfo> columns
+    )
     {
         if (columns.HasCreatedBy() && currentUser.Id.HasValue)
         {
@@ -300,7 +329,10 @@ public class AppDataDapperRepository(
         await connection.ExecuteAsync(sql, parameters, await GetDbTransactionAsync());
     }
 
-    private (string columnsSql, string joinSql) GetAuditedUserSql(string leftTableAlias, List<ColumnInfo> columns)
+    private (string columnsSql, string joinSql) GetAuditedUserSql(
+        string leftTableAlias,
+        List<ColumnInfo> columns
+    )
     {
         var columnsSql = new List<string>();
         var joinSqlSb = new StringBuilder();
@@ -340,7 +372,10 @@ public class AppDataDapperRepository(
 
             var lastModifiedUserTableAlias = sqlAliasManager.GenerateTableAlias("U");
 
-            _relatedTableAlias.Add(TableSystemColumns.LastModifiedBy.ColumnName, lastModifiedUserTableAlias);
+            _relatedTableAlias.Add(
+                TableSystemColumns.LastModifiedBy.ColumnName,
+                lastModifiedUserTableAlias
+            );
 
             joinSqlSb.Append(
                 sqlGenerator.GetLeftJoinSql(
@@ -382,7 +417,10 @@ public class AppDataDapperRepository(
         return (columnsSql.JoinAsString(", "), joinSqlSb.ToString());
     }
 
-    private (string columnsSql, string joinSql) GetRelationColumnSql(string leftTableAlias, List<ColumnInfo> columns)
+    private (string columnsSql, string joinSql) GetRelationColumnSql(
+        string leftTableAlias,
+        List<ColumnInfo> columns
+    )
     {
         var columnsSql = new List<string>();
         var joinSqlSb = new StringBuilder();
@@ -449,7 +487,10 @@ public class AppDataDapperRepository(
         else
         {
             columnsSb.Append(
-                sqlGenerator.GetColumnsSql(tableAlias, queryColumns.Select(x => new ColumnInfo { Name = x }).ToList())
+                sqlGenerator.GetColumnsSql(
+                    tableAlias,
+                    queryColumns.Select(x => new ColumnInfo { Name = x }).ToList()
+                )
             );
         }
 

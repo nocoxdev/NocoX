@@ -1,7 +1,6 @@
-import { type Ref, useEffect, useImperativeHandle, useState } from 'react';
+import { type Ref, useImperativeHandle, useState } from 'react';
 import type { PopconfirmProps } from 'antd';
 import { Popover } from 'antd';
-import { zIndex } from 'html2canvas/dist/types/css/property-descriptors/z-index';
 import { t } from 'i18next';
 import styled from 'styled-components';
 import NoWidget from '@/components/NoWidget';

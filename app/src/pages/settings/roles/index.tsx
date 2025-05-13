@@ -281,7 +281,7 @@ const Roles = observer(() => {
           setCreateOpen(false);
           runAsync();
         }}
-        destroyOnClose
+        destroyOnHidden
         onClose={() => setCreateOpen(false)}
       />
 

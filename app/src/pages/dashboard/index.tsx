@@ -1,61 +1,17 @@
-import { useMemo } from 'react';
-import { Outlet } from 'react-router';
-import { Layout, Skeleton } from 'antd';
-import type { SiderTheme } from 'antd/es/layout/Sider';
+import { Spin } from 'antd';
 import { observer } from 'mobx-react-lite';
-import styled, { useTheme } from 'styled-components';
-import ErrorBoundary from '@/components/ErrorBoundary';
-import { useSite, useUser } from '@/selectors';
-import Logo from '../common/Logo';
-import { PageHeader } from '../common/PageHeader';
-import MenuList from './MenusList';
-import { MenuListContext } from './MenusList/MenuListContext';
-import { WorkspaceStore } from './workspace/stores/WorkspaceStore';
+import { useUser } from '@/selectors';
+import Main from './Main';
 
-const StyledSider = styled.div`
-  width: 100%;
-  height: 100%;
-  border-right: 1px solid ${({ theme }) => theme.colorBorderSecondary};
-  .ant-menu-item {
-    font-weight: 600;
-  }
-`;
 const Dashboard = observer(() => {
-  const theme = useTheme();
-  const site = useSite();
   const user = useUser();
 
-  const workspaceStore = useMemo(() => new WorkspaceStore(), []);
+  console.log('user.initing', user.initing);
 
-  return (
-    <ErrorBoundary onReset={() => window.location.reload()}>
-      <MenuListContext.Provider value={{ workspaceStore }}>
-        <Layout style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-          <Layout.Sider
-            theme={site.theme as SiderTheme}
-            width={theme.widthMenu}
-          >
-            <StyledSider>
-              <Logo className={site.theme} title={site.title} />
-              <MenuList />
-            </StyledSider>
-          </Layout.Sider>
-
-          <Layout style={{ background: '#fff' }}>
-            <Layout.Header style={{ height: 48, lineHeight: 48, padding: 0 }}>
-              <PageHeader />
-            </Layout.Header>
-            <Layout.Content
-              style={{ background: '#f5f7fa', padding: 24, overflow: 'auto' }}
-            >
-              <Skeleton active loading={user.initing}>
-                <Outlet />
-              </Skeleton>
-            </Layout.Content>
-          </Layout>
-        </Layout>
-      </MenuListContext.Provider>
-    </ErrorBoundary>
+  return user.initing ? (
+    <Spin fullscreen spinning={user.initing} percent="auto" />
+  ) : (
+    <Main />
   );
 });
 

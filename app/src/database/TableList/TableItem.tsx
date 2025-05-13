@@ -108,7 +108,7 @@ const TableItem = observer((props: TableItemProps) => {
         </StyledActions>
       </StyledContainer>
       <EditTableModal
-        destroyOnClose
+        destroyOnHidden
         open={editModalOpen}
         initialValues={data}
         onOk={() => setEditModalOpen(false)}

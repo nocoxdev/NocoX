@@ -98,7 +98,7 @@ const EditRecordModal = observer(() => {
 
   return (
     <EnhancedModal
-      destroyOnClose
+      destroyOnHidden
       maskClosable={false}
       open={!!recordStore.currentEditRecord}
       onClose={() => recordStore.setCurrentEditRecordId()}

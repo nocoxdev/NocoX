@@ -103,14 +103,14 @@ const WorkspaceSettingActions = observer(
           </Tooltip>
         </ActionMenu>
         <RenameWorkspaceModal
-          destroyOnClose
+          destroyOnHidden
           workspace={workspace}
           open={renameWorkspaceOpen}
           onClose={() => setRenameWorkspaceOpen(false)}
         />
         <WorkspaceMemberListModal
           workspace={workspace}
-          destroyOnClose
+          destroyOnHidden
           open={workspaceMemberOpen}
           onClose={() => setWorkspaceMemberOpen(false)}
         />

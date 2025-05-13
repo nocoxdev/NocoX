@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import {
   IconArrowLeft,
@@ -8,7 +8,7 @@ import {
   IconUserCog,
 } from '@tabler/icons-react';
 import type { MenuTheme } from 'antd';
-import { Button, Layout, Menu, Skeleton, Tooltip } from 'antd';
+import { Button, Layout, Menu, Skeleton, Spin, Tooltip } from 'antd';
 import type { SiderTheme } from 'antd/es/layout/Sider';
 import { t } from 'i18next';
 import { observer } from 'mobx-react-lite';
@@ -43,6 +43,12 @@ const StyledTitleContainer = styled.div`
   padding-inline: 4px;
   gap: 8px;
   /* border-bottom: 1px solid ${({ theme }) => theme.colorBorderSecondary}; */
+
+  > :last-child {
+    font-size: 14px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colorText};
+  }
 `;
 
 const menus: MergedMenuItemType[] = [
@@ -117,11 +123,7 @@ const Settings = observer(() => {
           <StyledSider>
             <StyledTitleContainer>
               <Tooltip title={t('Back')} placement="top">
-                <Button
-                  type="text"
-                  onClick={() => window.history.back()}
-                  size="small"
-                >
+                <Button type="text" onClick={() => navigate('/')} size="small">
                   <IconArrowLeft
                     size={12}
                     color={theme.colorPrimaryTextActive}

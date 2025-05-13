@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using NocoX.AppDatas.Dtos;
 using NocoX.Common;
 using NocoX.Common.Dtos;
+using NocoX.Dapper.AppDatas;
 using NocoX.Database;
-using NocoX.EntityFrameworkCore.Dapper.AppDatas;
 using Volo.Abp.Application.Dtos;
 
 namespace NocoX.AppDatas;
