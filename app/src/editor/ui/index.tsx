@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import { IconComponents, IconSettings } from '@tabler/icons-react';
-import { Layout, Skeleton } from 'antd';
+import { Layout, Spin } from 'antd';
 import { t } from 'i18next';
 import { observer } from 'mobx-react-lite';
 import ErrorMessage from '@/components/ErrorMessage';
@@ -41,9 +41,9 @@ const AppEditor = observer(() => {
     app.widgetStore.loadWidgets();
   }, [site.lang]);
 
-  // if (app.requestStates.fetchApp.status === 'pending') {
-  //   return <Spin spinning fullscreen />;
-  // }
+  if (app.requestStates.fetchApp.status === 'pending') {
+    return <Spin spinning fullscreen />;
+  }
 
   if (app.requestStates.fetchApp.status === 'error') {
     return <ErrorMessage>{app.requestStates.fetchApp.message}</ErrorMessage>;
@@ -63,13 +63,7 @@ const AppEditor = observer(() => {
         />
       </Layout.Sider>
       <Layout>
-        <Skeleton
-          loading={app.requestStates.fetchApp.status === 'pending'}
-          active
-          style={{ padding: 24 }}
-        >
-          <Outlet />
-        </Skeleton>
+        <Outlet />
       </Layout>
     </Layout>
   );

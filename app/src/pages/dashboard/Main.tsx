@@ -16,8 +16,9 @@ const StyledSider = styled.div`
   width: 100%;
   height: 100%;
   border-right: 1px solid ${({ theme }) => theme.colorBorderSecondary};
+
   .ant-menu-item {
-    font-weight: 600;
+    font-weight: 500;
   }
 `;
 const Main = observer(() => {
@@ -36,8 +37,8 @@ const Main = observer(() => {
             style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}
           >
             <Layout.Sider
-              theme={site.theme as SiderTheme}
               width={theme.widthMenu}
+              theme={site.theme as SiderTheme}
             >
               <StyledSider>
                 <Logo className={site.theme} title={site.title} />

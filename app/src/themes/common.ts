@@ -3,9 +3,9 @@ import type { ThemeConfig } from 'antd/es/config-provider';
 import type { CustomToken } from './types';
 
 export const customToken: CustomToken = {
-  widthDesignerLeftSidebar: 228,
+  widthDesignerLeftSidebar: 248,
   widthDesignerRightSidebar: 248,
-  widthMenu: 228,
+  widthMenu: 248,
   heightHeader: 48,
   colorSiderBg: '#fff',
 };

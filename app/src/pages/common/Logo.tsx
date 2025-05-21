@@ -6,7 +6,7 @@ const StyledSiderLogoContainer = styled.div<{ $collapsed: boolean }>`
   display: flex;
   position: relative;
   align-items: center;
-  padding: 0px 16px;
+  padding: 0px 8px;
   height: 48px;
   transition: all 0.2s;
   box-sizing: border-box;
@@ -17,11 +17,11 @@ const StyledSiderLogoContainer = styled.div<{ $collapsed: boolean }>`
   cursor: pointer;
 
   > img {
-    height: 20px;
+    height: 28px;
   }
   > svg {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
   }
   > span {
     height: 28px;

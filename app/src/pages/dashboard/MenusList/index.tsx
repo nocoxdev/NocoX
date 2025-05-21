@@ -15,18 +15,26 @@ import { menus } from './menus';
 const StyledContainer = styled.div`
   height: calc(100vh - 48px);
 
-  &.dark {
-    .split-view-container {
-      > .split-view-view:not(:first-child)::before {
-        background-color: #444 !important;
-      }
-    }
+  .ant-menu-title-content {
+    color: ${({ theme }) => theme.colorTextSecondary};
   }
 `;
 
 const StyledMenus = styled.div`
   padding: 4px;
   padding-top: 12px;
+
+  .ant-menu-item-icon {
+    svg {
+      color: ${({ theme }) => theme.colorTextSecondary} !important;
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .ant-menu-title-content {
+    margin-inline-start: 12px !important;
+  }
 `;
 
 const MenuList = observer(() => {

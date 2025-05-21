@@ -11,7 +11,7 @@ export const StyledContentContainer = styled.div`
   min-height: 400px;
 
   .ant-table-wrapper .ant-table-thead > tr > th {
-    color: ${({ theme }) => theme.colorTextTertiary};
+    color: ${({ theme }) => theme.colorTextSecondary};
     /* background-color: #fff; */
     /* border-top: 1px solid ${({ theme }) => theme.colorBorderSecondary};
     color: ${({ theme }) => theme.colorTextTertiary}; */

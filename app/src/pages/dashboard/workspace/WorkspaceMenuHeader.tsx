@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { IconPlus } from '@tabler/icons-react';
-import { Button, ConfigProvider, theme, Tooltip } from 'antd';
+import { Button, Tooltip } from 'antd';
 import { t } from 'i18next';
 import styled from 'styled-components';
 import { useSite } from '@/selectors';
@@ -35,26 +35,18 @@ const WorkspaceMenuHeader = ({ count }: WorkspaceMenuHeaderProps) => {
 
   return (
     <StyledContainer className={site.theme}>
-      <ConfigProvider
-        theme={{
-          algorithm:
-            site.theme === 'dark'
-              ? theme.darkAlgorithm
-              : theme.defaultAlgorithm,
-        }}
-      >
-        <span>
-          {t('Workspaces')}({count})
-        </span>
-        <Tooltip title={t('Create workspace')} placement="top">
-          <Button
-            type="text"
-            size="small"
-            icon={<IconPlus size={14} stroke={1} />}
-            onClick={() => setCreateModalOpen(true)}
-          />
-        </Tooltip>
-      </ConfigProvider>
+      <span>
+        {t('Workspaces')}({count})
+      </span>
+      <Tooltip title={t('Create workspace')} placement="top">
+        <Button
+          type="text"
+          size="small"
+          icon={<IconPlus size={14} stroke={1} />}
+          onClick={() => setCreateModalOpen(true)}
+        />
+      </Tooltip>
+
       <CreateWorkspaceModal
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}

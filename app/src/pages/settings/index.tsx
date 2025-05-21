@@ -1,22 +1,25 @@
-import { Suspense, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import {
-  IconArrowLeft,
   IconLock,
   IconUser,
   IconUserCircle,
   IconUserCog,
 } from '@tabler/icons-react';
 import type { MenuTheme } from 'antd';
-import { Button, Layout, Menu, Skeleton, Spin, Tooltip } from 'antd';
+import { Breadcrumb, Layout, Menu, Skeleton } from 'antd';
 import type { SiderTheme } from 'antd/es/layout/Sider';
+import type { MenuItemGroupType } from 'antd/es/menu/interface';
 import { t } from 'i18next';
 import { observer } from 'mobx-react-lite';
 import styled, { useTheme } from 'styled-components';
 import AntdIcon from '@/components/AntdIcon';
+import { StyledBreadcrumbTitle } from '@/components/common.styled';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { useGrantedMenus, useSite, useUser } from '@/selectors';
 import type { MergedMenuItemType } from '@/types';
+import GoBack from '../common/GoBack';
+import Logo from '../common/Logo';
 import { PageHeader } from '../common/PageHeader';
 
 const StyledSider = styled.div`
@@ -32,22 +35,10 @@ const StyledSider = styled.div`
     }
   }
   .ant-menu-item {
-    font-weight: 600;
-  }
-`;
-
-const StyledTitleContainer = styled.div`
-  display: flex;
-  height: 48px;
-  align-items: center;
-  padding-inline: 4px;
-  gap: 8px;
-  /* border-bottom: 1px solid ${({ theme }) => theme.colorBorderSecondary}; */
-
-  > :last-child {
-    font-size: 14px;
     font-weight: 500;
-    color: ${({ theme }) => theme.colorText};
+    .ant-menu-title-content {
+      margin-inline-start: 12px !important;
+    }
   }
 `;
 
@@ -59,12 +50,12 @@ const menus: MergedMenuItemType[] = [
 
     children: [
       {
-        icon: <AntdIcon content={IconUser} />,
+        icon: <AntdIcon content={IconUser} size={14} />,
         key: 'profile',
         label: t('Profile'),
       },
       {
-        icon: <AntdIcon content={IconLock} />,
+        icon: <AntdIcon content={IconLock} size={14} />,
         key: 'password',
         label: t('Password'),
       },
@@ -76,12 +67,12 @@ const menus: MergedMenuItemType[] = [
     type: 'group',
     children: [
       {
-        icon: <AntdIcon content={IconUserCircle} />,
+        icon: <AntdIcon content={IconUserCircle} size={14} />,
         key: 'users',
         label: t('Users'),
       },
       {
-        icon: <AntdIcon content={IconUserCog} />,
+        icon: <AntdIcon content={IconUserCog} size={14} />,
         key: 'roles',
         label: t('Roles'),
       },
@@ -93,7 +84,7 @@ const menus: MergedMenuItemType[] = [
     type: 'group',
     children: [
       {
-        icon: <AntdIcon content={IconUserCircle} />,
+        icon: <AntdIcon content={IconUserCircle} size={14} />,
         key: 'resource',
         label: t('Resource'),
       },
@@ -112,6 +103,21 @@ const Settings = observer(() => {
     return location.pathname.split('/')[2] || 'profile';
   }, [location.pathname]);
 
+  const currentItem = allowMenus
+    .flatMap((item) => (item as MenuItemGroupType).children || [])
+    .find((item) => item?.key === selectedKey) as MenuItemGroupType;
+
+  const breadcrumbItems = [
+    {
+      title: t('Settings'),
+    },
+    {
+      title: (
+        <StyledBreadcrumbTitle>{currentItem?.label}</StyledBreadcrumbTitle>
+      ),
+    },
+  ];
+
   return (
     <ErrorBoundary onReset={() => window.location.reload()}>
       <Layout style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
@@ -121,17 +127,9 @@ const Settings = observer(() => {
           width={theme.widthMenu}
         >
           <StyledSider>
-            <StyledTitleContainer>
-              <Tooltip title={t('Back')} placement="top">
-                <Button type="text" onClick={() => navigate('/')} size="small">
-                  <IconArrowLeft
-                    size={12}
-                    color={theme.colorPrimaryTextActive}
-                  />
-                </Button>
-              </Tooltip>
-              <span>{t('Setting')}</span>
-            </StyledTitleContainer>
+            <Logo />
+            <GoBack title={t('Setting')} />
+
             <Skeleton active loading={user.initing} style={{ padding: 12 }}>
               <Menu
                 theme={site.theme as MenuTheme}
@@ -148,7 +146,9 @@ const Settings = observer(() => {
 
         <Layout style={{ background: '#fff' }}>
           <Layout.Header style={{ height: 48, lineHeight: 48, padding: 0 }}>
-            <PageHeader></PageHeader>
+            <PageHeader>
+              <Breadcrumb style={{ marginLeft: 24 }} items={breadcrumbItems} />
+            </PageHeader>
           </Layout.Header>
           <Layout.Content
             style={{ background: '#f5f7fa', padding: 24, overflow: 'auto' }}

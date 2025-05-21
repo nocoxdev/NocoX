@@ -1,7 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { IconArrowLeft } from '@tabler/icons-react';
-import { Breadcrumb, Button, Empty, Layout, Tooltip } from 'antd';
+import { Breadcrumb, Empty, Layout } from 'antd';
 import type { SiderTheme } from 'antd/es/layout/Sider';
 import { t } from 'i18next';
 import { styled, useTheme } from 'styled-components';
@@ -9,6 +7,8 @@ import { StyledBreadcrumbTitle } from '@/components/common.styled';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { useSite } from '@/selectors';
 import type { DictionaryGroupResponse } from '@/services/responses';
+import GoBack from '../common/GoBack';
+import Logo from '../common/Logo';
 import { PageHeader } from '../common/PageHeader';
 import { DictionaryContext } from './context';
 import DataList from './Data';
@@ -18,19 +18,9 @@ const StyledSider = styled.div`
   border-right: 1px solid ${({ theme }) => theme.colorBorderSecondary};
 `;
 
-const StyledTitleContainer = styled.div`
-  display: flex;
-  height: 48px;
-  align-items: center;
-  padding-inline: 4px;
-  gap: 8px;
-  /* border-bottom: 1px solid ${({ theme }) => theme.colorBorderSecondary}; */
-`;
-
 const Dictionary = () => {
   const theme = useTheme();
   const site = useSite();
-  const navigate = useNavigate();
 
   const [currentGroup, setCurrentGroup] = useState<DictionaryGroupResponse>();
 
@@ -61,23 +51,8 @@ const Dictionary = () => {
             width={theme.widthMenu}
           >
             <StyledSider>
-              <StyledTitleContainer>
-                <Tooltip title={t('Back')} placement="top">
-                  <Button
-                    type="text"
-                    onClick={() => navigate('/')}
-                    size="small"
-                  >
-                    <IconArrowLeft
-                      size={12}
-                      color={theme.colorPrimaryTextActive}
-                    />
-                  </Button>
-                </Tooltip>
-
-                <span>{t('Dictionary')}</span>
-              </StyledTitleContainer>
-
+              <Logo />
+              <GoBack title={t('Dictionary')} />
               <GroupList />
             </StyledSider>
           </Layout.Sider>

@@ -6,8 +6,6 @@ import Main from './Main';
 const Dashboard = observer(() => {
   const user = useUser();
 
-  console.log('user.initing', user.initing);
-
   return user.initing ? (
     <Spin fullscreen spinning={user.initing} percent="auto" />
   ) : (

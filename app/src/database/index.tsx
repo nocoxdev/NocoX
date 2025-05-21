@@ -8,24 +8,17 @@ import styled, { useTheme } from 'styled-components';
 import { StyledBreadcrumbTitle } from '@/components/common.styled';
 import DataTable from '@/database/DataTable';
 import TableList from '@/database/TableList';
+import GoBack from '@/pages/common/GoBack';
+import Logo from '@/pages/common/Logo';
 import { PageHeader } from '@/pages/common/PageHeader';
 import { useSite } from '@/selectors';
 import { useStore } from './selectors';
 
 const StyledSider = styled.div``;
 
-const StyledTitleContainer = styled.div`
-  display: flex;
-  height: 48px;
-  align-items: center;
-  padding-inline: 4px;
-  gap: 8px;
-`;
-
 const Database = observer(() => {
   const theme = useTheme();
   const site = useSite();
-  const navigate = useNavigate();
 
   const store = useStore();
 
@@ -51,16 +44,9 @@ const Database = observer(() => {
         }}
       >
         <StyledSider>
-          <StyledTitleContainer>
-            <Tooltip title={t('Back')} placement="top">
-              <Button type="text" onClick={() => navigate('/')} size="small">
-                <IconArrowLeft size={12} color={theme.colorPrimaryTextActive} />
-              </Button>
-            </Tooltip>
-
-            <span>{t('Database')}</span>
-          </StyledTitleContainer>
-
+          {' '}
+          <Logo />
+          <GoBack title={t('Database')} />
           <TableList />
         </StyledSider>
       </Layout.Sider>
