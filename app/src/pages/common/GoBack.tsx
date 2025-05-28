@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { Button } from 'antd';
 import { t } from 'i18next';
-import { styled, useTheme } from 'styled-components';
+import { styled } from 'styled-components';
 
 const StyledTitleContainer = styled.div`
   display: flex;
@@ -21,8 +21,6 @@ interface GoBackProps {
 }
 
 const GoBack = ({ title, path = '/' }: GoBackProps) => {
-  const theme = useTheme();
-
   const navigate = useNavigate();
   return (
     <StyledTitleContainer>

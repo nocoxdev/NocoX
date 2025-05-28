@@ -17,6 +17,9 @@ const StyledContainer = styled.div`
   gap: 2px;
   padding: 4px;
   padding-top: 12px;
+  padding-bottom: 24px;
+  min-height: 200px;
+  border-bottom: 1px solid ${({ theme }) => theme.colorBorderSecondary};
 `;
 
 interface WorkspaceMenuListProps {

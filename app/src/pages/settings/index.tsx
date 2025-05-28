@@ -1,11 +1,6 @@
 import { useMemo } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router';
-import {
-  IconLock,
-  IconUser,
-  IconUserCircle,
-  IconUserCog,
-} from '@tabler/icons-react';
+import { IconLock, IconUser } from '@tabler/icons-react';
 import type { MenuTheme } from 'antd';
 import { Breadcrumb, Layout, Menu, Skeleton } from 'antd';
 import type { SiderTheme } from 'antd/es/layout/Sider';
@@ -58,35 +53,6 @@ const menus: MergedMenuItemType[] = [
         icon: <AntdIcon content={IconLock} size={14} />,
         key: 'password',
         label: t('Password'),
-      },
-    ],
-  },
-  {
-    key: 'user-management',
-    label: t('User Management'),
-    type: 'group',
-    children: [
-      {
-        icon: <AntdIcon content={IconUserCircle} size={14} />,
-        key: 'users',
-        label: t('Users'),
-      },
-      {
-        icon: <AntdIcon content={IconUserCog} size={14} />,
-        key: 'roles',
-        label: t('Roles'),
-      },
-    ],
-  },
-  {
-    key: 'resource-management',
-    label: t('Resource Management'),
-    type: 'group',
-    children: [
-      {
-        icon: <AntdIcon content={IconUserCircle} size={14} />,
-        key: 'resource',
-        label: t('Resource'),
       },
     ],
   },

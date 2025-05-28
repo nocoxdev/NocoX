@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useNavigate } from 'react-router';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Dropdown, Skeleton } from 'antd';
 import type { MenuDividerType, MenuItemType } from 'antd/es/menu/interface';
@@ -11,6 +12,7 @@ import { StyledAvatarContainer } from '../styled';
 
 export const UserAvatar = observer(() => {
   const user = useUser();
+  const nagivate = useNavigate();
 
   const menus: (MenuDividerType | MenuItemType)[] = [
     {
@@ -18,7 +20,7 @@ export const UserAvatar = observer(() => {
       icon: <UserOutlined />,
       label: t('Settings'),
       onClick: () => {
-        window.location.href = `${ADMIN_BASE_URL}/settings`;
+        nagivate(`${ADMIN_BASE_URL}/settings`);
       },
     },
     {

@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { IconSettings } from '@tabler/icons-react';
 import type { MenuTheme } from 'antd';
-import { Menu, Skeleton, Splitter } from 'antd';
+import { Menu, Skeleton } from 'antd';
+import type { MenuItemGroupType } from 'antd/es/menu/interface';
 import { t } from 'i18next';
 import { observer } from 'mobx-react-lite';
 import { styled } from 'styled-components';
@@ -35,6 +36,10 @@ const StyledMenus = styled.div`
   .ant-menu-title-content {
     margin-inline-start: 12px !important;
   }
+
+  .ant-menu .ant-menu-item-group-title {
+    padding-inline: 12px;
+  }
 `;
 
 const MenuList = observer(() => {
@@ -51,42 +56,36 @@ const MenuList = observer(() => {
       return params.workspaceId || '';
     } else {
       const path = location.pathname.split('/').at(-1);
-      return allowMenus.some((item) => item.key === path)
+      return ((allowMenus as MenuItemGroupType[]) || [])
+        .flatMap((item) => item.children)
+        .some((item) => item?.key === path)
         ? path || ''
         : 'my-apps';
     }
   }, [location.pathname, params.workspaceId]);
 
+  const visableMenus = useMemo(() => {
+    return allowMenus;
+  }, [allowMenus]);
+
   return (
     <StyledContainer className={site.theme}>
-      <Splitter layout="vertical">
-        {user.workspaceGranted && (
-          <Splitter.Panel min={100} defaultSize={200}>
-            <WorkspaceMenuList selectedKey={selectedKey} />
-          </Splitter.Panel>
-        )}
-        <Splitter.Panel>
-          <StyledMenus>
-            <Skeleton loading={user.initing} active style={{ padding: 12 }}>
-              <Menu
-                theme={site.theme as MenuTheme}
-                mode="inline"
-                inlineIndent={8}
-                items={allowMenus.concat({
-                  icon: <AntdIcon content={IconSettings} />,
-                  key: 'settings',
-                  label: t('Settings'),
-                })}
-                selectedKeys={[selectedKey]}
-                onSelect={(info) => {
-                  navigate(`/${info.key}`);
-                }}
-                style={{ borderInlineEnd: 'none' }}
-              />
-            </Skeleton>
-          </StyledMenus>
-        </Splitter.Panel>
-      </Splitter>
+      {user.workspaceGranted && <WorkspaceMenuList selectedKey={selectedKey} />}
+      <StyledMenus>
+        <Skeleton loading={user.initing} active style={{ padding: 12 }}>
+          <Menu
+            theme={site.theme as MenuTheme}
+            mode="inline"
+            inlineIndent={8}
+            items={visableMenus as any}
+            selectedKeys={[selectedKey]}
+            onSelect={(info) => {
+              navigate(`/${info.key}`);
+            }}
+            style={{ borderInlineEnd: 'none' }}
+          />
+        </Skeleton>
+      </StyledMenus>
     </StyledContainer>
   );
 });

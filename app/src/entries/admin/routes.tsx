@@ -5,6 +5,9 @@ import NoFoundPage from '@/pages/404';
 import Dashboard from '@/pages/dashboard';
 import MyApps from '@/pages/dashboard/myApps';
 import Releases from '@/pages/dashboard/releases';
+import Resource from '@/pages/dashboard/resource';
+import Roles from '@/pages/dashboard/roles';
+import UserManager from '@/pages/dashboard/users';
 import Workspace from '@/pages/dashboard/workspace';
 import Database from '@/pages/database';
 import Dictionary from '@/pages/dictionary';
@@ -13,9 +16,6 @@ import Login from '@/pages/login';
 import Settings from '@/pages/settings';
 import Password from '@/pages/settings/password';
 import Profile from '@/pages/settings/profile';
-import Resource from '@/pages/settings/resource';
-import Roles from '@/pages/settings/roles';
-import UserManager from '@/pages/settings/users';
 
 const routes: RouteObject[] = [
   {
@@ -39,17 +39,28 @@ const routes: RouteObject[] = [
             element: <MyApps />,
           },
           {
+            path: 'workspace/:workspaceId',
+            element: <Workspace />,
+          },
+          {
             path: 'my-apps',
             element: <MyApps />,
           },
           {
-            path: 'workspace/:workspaceId',
-            element: <Workspace />,
-          },
-
-          {
             path: 'releases',
             element: <Releases />,
+          },
+          {
+            path: 'users',
+            element: <UserManager />,
+          },
+          {
+            path: 'roles',
+            element: <Roles />,
+          },
+          {
+            path: 'resource',
+            element: <Resource />,
           },
         ],
       },
@@ -61,6 +72,7 @@ const routes: RouteObject[] = [
         path: 'dictionary',
         element: <Dictionary />,
       },
+
       {
         path: 'settings',
         element: <Settings />,
@@ -78,18 +90,6 @@ const routes: RouteObject[] = [
           {
             path: 'password',
             element: <Password />,
-          },
-          {
-            path: 'users',
-            element: <UserManager />,
-          },
-          {
-            path: 'roles',
-            element: <Roles />,
-          },
-          {
-            path: 'resource',
-            element: <Resource />,
           },
         ],
       },

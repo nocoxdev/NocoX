@@ -15,7 +15,7 @@ import DataSort from '@/components/DataSort';
 import type { EnhancedModalProps } from '@/components/Modal';
 import EnhancedModal from '@/components/Modal';
 import { StyledAvatarContainer, StyledToolbar } from '@/pages/common/styled';
-import RoleSelect from '@/pages/settings/roles/RoleSelect';
+import RoleSelect from '@/pages/dashboard/roles/RoleSelect';
 import { useMessage } from '@/selectors';
 import { WorkspaceApi } from '@/services/api';
 import type { UserResponse, WorkspaceResponse } from '@/services/responses';
