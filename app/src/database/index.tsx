@@ -1,6 +1,4 @@
-import { useNavigate } from 'react-router';
-import { IconArrowLeft } from '@tabler/icons-react';
-import { Breadcrumb, Button, Empty, Layout, Tooltip } from 'antd';
+import { Breadcrumb, Empty, Layout } from 'antd';
 import type { SiderTheme } from 'antd/es/layout/Sider';
 import { t } from 'i18next';
 import { observer } from 'mobx-react-lite';

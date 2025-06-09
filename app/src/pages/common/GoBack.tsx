@@ -20,7 +20,7 @@ interface GoBackProps {
   path?: string;
 }
 
-const GoBack = ({ title, path = '/' }: GoBackProps) => {
+const GoBack = ({ path = '/' }: GoBackProps) => {
   const navigate = useNavigate();
   return (
     <StyledTitleContainer>

@@ -5,7 +5,7 @@ import actions from '@/editor/actions';
 import type { AppEditorContextType } from '@/editor/context';
 import { AppEditorContext } from '@/editor/context';
 import { App, Canvas } from '@/editor/stores';
-import AppEditor from '@/editor/ui';
+import Editor from '@/editor/ui';
 import { useMessage, useModal, useNotification } from '@/selectors';
 import NoFoundPage from '../404';
 
@@ -31,7 +31,7 @@ const EditAppPage = () => {
   return appId ? (
     <ErrorBoundary onReset={() => location.reload()}>
       <AppEditorContext.Provider value={defaultContextValue!}>
-        <AppEditor />
+        <Editor />
       </AppEditorContext.Provider>
     </ErrorBoundary>
   ) : (

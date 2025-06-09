@@ -35,7 +35,9 @@ public class AppReleaseAppService(
         return DataSuccess(ObjectMapper.Map<List<AppRelease>, List<MyAppGetDto>>(apps));
     }
 
-    public async Task<DataResult<PagedResultDto<AppReleaseGetDto>>> GetPageListAsync(QueryPageListParamsInput input)
+    public async Task<DataResult<PagedResultDto<AppReleaseGetDto>>> GetPageListAsync(
+        QueryPageListParamsInput input
+    )
     {
         var (releases, total) = await releaseRepository.GetPageListAsync(
             input.PageIndex,
@@ -52,7 +54,6 @@ public class AppReleaseAppService(
 
         return DataSuccess(result);
     }
-
 
     public async Task<DataResult<RunningAppGetDto>> GetRunningAppAsync(Guid id)
     {
@@ -124,6 +125,11 @@ public class AppReleaseAppService(
 
         var maxOrder = await releaseRepository.GetMaxReleaseOrderAsync(release.AppId);
 
+        if (release.Order == maxOrder)
+        {
+            return Fail("Already is current version.");
+        }
+
         release.Order = maxOrder + 1;
 
         await releaseRepository.UpdateAsync(release);
@@ -134,10 +140,11 @@ public class AppReleaseAppService(
     public async Task<DataResult<List<AppReleaseVersionGetDto>>> GetAllVersionsAsync(Guid appId)
     {
         var versions = await releaseRepository.GetAllVersionsAsync(appId);
-        var dtos = ObjectMapper.Map<List<AppReleaseVersionQueryItem>, List<AppReleaseVersionGetDto>>(versions);
+        var dtos = ObjectMapper.Map<
+            List<AppReleaseVersionQueryItem>,
+            List<AppReleaseVersionGetDto>
+        >(versions);
 
         return DataSuccess(dtos);
     }
-
-  
 }

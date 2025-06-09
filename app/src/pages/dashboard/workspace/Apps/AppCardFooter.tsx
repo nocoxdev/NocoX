@@ -23,7 +23,7 @@ const StyledModified = styled.div`
   align-items: center;
 
   font-size: ${({ theme }) => theme.fontSize}px;
-  color: #888;
+  color: ${({ theme }) => theme.colorTextTertiary};
 
   > div {
     line-height: 1.5;
@@ -59,10 +59,12 @@ const AppFooter = observer(() => {
             {t('Modified')} {modifiedAt}
           </div>
         </StyledModified>
+
         <Popover
           trigger={['click']}
           placement="right"
           content={<PopoverContent />}
+          autoAdjustOverflow
           arrow={false}
           styles={{
             body: {

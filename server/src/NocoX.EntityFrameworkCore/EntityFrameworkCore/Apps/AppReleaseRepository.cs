@@ -28,7 +28,7 @@ public class AppReleaseRepository(IDbContextProvider<NocoXDbContext> dbContextPr
             where userRole.UserId == userId
             select appRelease;
 
-        return [.. queryable];
+        return [.. queryable.Distinct()];
     }
 
     public async Task<AppReleaseVersionQueryItem?> GetCurrentVersionAsync(Guid appId)
@@ -39,6 +39,7 @@ public class AppReleaseRepository(IDbContextProvider<NocoXDbContext> dbContextPr
             .Select(x => new AppReleaseVersionQueryItem()
             {
                 Id = x.Id,
+                Title = x.Title,
                 Version = x.Version,
                 Description = x.Description,
             })
@@ -123,8 +124,10 @@ public class AppReleaseRepository(IDbContextProvider<NocoXDbContext> dbContextPr
             .Select(x => new AppReleaseVersionQueryItem()
             {
                 Id = x.Id,
+                Title = x.Title,
                 Favicon = x.Favicon,
                 Version = x.Version,
+                Order = x.Order,
                 Description = x.Description,
             });
 

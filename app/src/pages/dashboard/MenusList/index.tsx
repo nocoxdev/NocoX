@@ -1,13 +1,10 @@
 import { useMemo } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
-import { IconSettings } from '@tabler/icons-react';
 import type { MenuTheme } from 'antd';
 import { Menu, Skeleton } from 'antd';
 import type { MenuItemGroupType } from 'antd/es/menu/interface';
-import { t } from 'i18next';
 import { observer } from 'mobx-react-lite';
 import { styled } from 'styled-components';
-import AntdIcon from '@/components/AntdIcon';
 import { ADMIN_BASE_URL } from '@/constants';
 import { useGrantedMenus, useSite, useUser } from '@/selectors';
 import WorkspaceMenuList from '../workspace/WorkspaceMenuList';
@@ -15,6 +12,7 @@ import { menus } from './menus';
 
 const StyledContainer = styled.div`
   height: calc(100vh - 48px);
+  overflow-y: auto;
 
   .ant-menu-title-content {
     color: ${({ theme }) => theme.colorTextSecondary};
@@ -37,8 +35,14 @@ const StyledMenus = styled.div`
     margin-inline-start: 12px !important;
   }
 
-  .ant-menu .ant-menu-item-group-title {
-    padding-inline: 12px;
+  .ant-menu {
+    .ant-menu-item-group {
+      padding-bottom: 12px;
+      .ant-menu-item-group-title {
+        padding-inline: 12px;
+        padding-block: 8px 4px;
+      }
+    }
   }
 `;
 

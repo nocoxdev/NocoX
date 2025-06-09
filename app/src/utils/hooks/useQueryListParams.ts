@@ -23,11 +23,11 @@ export function useQueryListParams() {
   return [queries, setQueries] as const;
 }
 
-export function useQueryPageListParams() {
+export function useQueryPageListParams(pageSize?: number) {
   const [queries, setInnerQueries] = useState<QueryPageListParamsType>({
     ...defaultQueryListParams,
     pageIndex: 1,
-    pageSize: 6,
+    pageSize: pageSize || 6,
   });
 
   const setQueries = (queries: Partial<QueryPageListParamsType>) => {

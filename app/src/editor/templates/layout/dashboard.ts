@@ -9,7 +9,6 @@ export const dashboard = {
   type: PageType.LAYOUT,
   content: {
     name: 'page',
-    label: t('Page'),
     visible: true,
     props: {},
     styles: { padding: { padding: 0 }, background: {} },
@@ -18,7 +17,6 @@ export const dashboard = {
       children: [
         {
           name: 'layout',
-          label: t('Page Layout'),
           visible: true,
           props: {},
           styles: { background: { type: 'none', value: '' } },
@@ -27,7 +25,6 @@ export const dashboard = {
             children: [
               {
                 name: 'layout-sider',
-                label: t('Sider'),
                 visible: true,
                 props: {
                   width: '200px',
@@ -41,7 +38,6 @@ export const dashboard = {
                   children: [
                     {
                       name: 'condition',
-                      label: t('Condition'),
                       visible: true,
                       props: {
                         visible: false,
@@ -63,7 +59,6 @@ export const dashboard = {
                         children: [
                           {
                             name: 'flex',
-                            label: t('Flex'),
                             visible: true,
                             props: {
                               direction: 'horizontal',
@@ -83,7 +78,6 @@ export const dashboard = {
                               children: [
                                 {
                                   name: 'link',
-                                  label: t('Link'),
                                   visible: true,
                                   props: { target: '_self' },
                                   styles: {},
@@ -92,7 +86,6 @@ export const dashboard = {
                                     children: [
                                       {
                                         name: 'flex',
-                                        label: t('Flex'),
                                         visible: true,
                                         props: {
                                           direction: 'horizontal',
@@ -115,7 +108,6 @@ export const dashboard = {
                                           children: [
                                             {
                                               name: 'image',
-                                              label: t('Image'),
                                               visible: true,
                                               props: {
                                                 width: '28px',
@@ -129,7 +121,6 @@ export const dashboard = {
                                             },
                                             {
                                               name: 'simple-text',
-                                              label: t('Simple Text'),
                                               visible: true,
                                               props: { value: 'NocoX' },
                                               styles: {
@@ -157,7 +148,6 @@ export const dashboard = {
                     },
                     {
                       name: 'condition',
-                      label: t('Condition'),
                       visible: true,
                       props: {
                         visible: false,
@@ -179,7 +169,6 @@ export const dashboard = {
                         children: [
                           {
                             name: 'flex',
-                            label: t('Flex'),
                             visible: true,
                             props: {
                               direction: 'horizontal',
@@ -200,7 +189,6 @@ export const dashboard = {
                               children: [
                                 {
                                   name: 'link',
-                                  label: t('Link'),
                                   visible: true,
                                   props: { target: '_self' },
                                   styles: {},
@@ -209,7 +197,6 @@ export const dashboard = {
                                     children: [
                                       {
                                         name: 'image',
-                                        label: t('Image'),
                                         visible: true,
                                         props: {
                                           width: '26px',
@@ -232,7 +219,6 @@ export const dashboard = {
                     },
                     {
                       name: 'menu',
-                      label: '菜单',
 
                       visible: true,
                       props: {
@@ -246,7 +232,6 @@ export const dashboard = {
                         children: [
                           {
                             name: 'menu-item',
-                            label: '菜单项',
                             visible: true,
                             props: {
                               urlType: 'page',
@@ -273,8 +258,6 @@ export const dashboard = {
                           },
                           {
                             name: 'menu-item',
-                            label: '菜单项',
-
                             visible: true,
                             props: {
                               urlType: 'page',
@@ -302,8 +285,6 @@ export const dashboard = {
               },
               {
                 name: 'layout',
-                label: t('Layout'),
-
                 visible: true,
                 props: {},
                 styles: { background: {} },
@@ -312,8 +293,6 @@ export const dashboard = {
                   children: [
                     {
                       name: 'layout-header',
-                      label: t('Header'),
-
                       visible: true,
                       props: {},
                       styles: { height: { height: '48px' } },
@@ -322,7 +301,6 @@ export const dashboard = {
                     },
                     {
                       name: 'layout-content',
-                      label: t('Content'),
                       visible: true,
                       props: { width: '600px' },
                       styles: {},

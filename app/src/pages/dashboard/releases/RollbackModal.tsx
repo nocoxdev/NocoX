@@ -1,7 +1,8 @@
 import { IconAB2 } from '@tabler/icons-react';
 import { useRequest } from 'ahooks';
-import { Avatar, Button, List, Popconfirm, Skeleton } from 'antd';
+import { Button, List, Popconfirm, Skeleton, Tag } from 'antd';
 import { t } from 'i18next';
+import ImageView from '@/components/ImageView';
 import type { EnhancedModalProps } from '@/components/Modal';
 import EnhancedModal from '@/components/Modal';
 import { useMessage } from '@/selectors';
@@ -38,31 +39,38 @@ const RollbackModal = (props: RollbackModalProps) => {
         <List
           dataSource={resp?.data}
           loading={loading}
-          renderItem={(item) => (
+          renderItem={(item, index) => (
             <List.Item>
               <List.Item.Meta
                 avatar={
                   item.favicon ? (
-                    <Avatar src={item.favicon} />
+                    <ImageView id={item.favicon} simple />
                   ) : (
                     <IconAB2 size="20" color="#ea9343" />
                   )
                 }
-                title={item.version}
+                title={`${item.title} ${item.version}`}
                 description={item.description}
               />
-              <Popconfirm
-                title={t('Are you sure to rollback to this version?')}
-                onConfirm={() => handleRollback(item.id)}
-                okText={t('Yes')}
-                cancelText={t('No')}
-                okButtonProps={{ size: 'small' }}
-                cancelButtonProps={{ size: 'small' }}
-              >
-                <Button type="link" size="small" loading={submitting}>
-                  {t('Rollback')}
-                </Button>
-              </Popconfirm>
+
+              {index === 0 ? (
+                <Tag bordered={false} color="processing">
+                  {t('Current Version')}
+                </Tag>
+              ) : (
+                <Popconfirm
+                  title={t('Are you sure to rollback to this version?')}
+                  onConfirm={() => handleRollback(item.id)}
+                  okText={t('Yes')}
+                  cancelText={t('No')}
+                  okButtonProps={{ size: 'small' }}
+                  cancelButtonProps={{ size: 'small' }}
+                >
+                  <Button type="link" size="small" loading={submitting}>
+                    {t('Rollback')}
+                  </Button>
+                </Popconfirm>
+              )}
             </List.Item>
           )}
         />

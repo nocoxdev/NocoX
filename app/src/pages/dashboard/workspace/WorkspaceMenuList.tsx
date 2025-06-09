@@ -18,8 +18,9 @@ const StyledContainer = styled.div`
   padding: 4px;
   padding-top: 12px;
   padding-bottom: 24px;
-  min-height: 200px;
-  border-bottom: 1px solid ${({ theme }) => theme.colorBorderSecondary};
+  height: 200px;
+  overflow-y: auto;
+  /* border-bottom: 1px solid ${({ theme }) => theme.colorBorderSecondary}; */
 `;
 
 interface WorkspaceMenuListProps {

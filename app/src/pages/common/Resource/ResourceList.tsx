@@ -32,7 +32,7 @@ interface ResourceListProps {
 
 const ResourceList = observer((props: ResourceListProps) => {
   const { onSelect } = props;
-  const [queries, setQueries] = useQueryPageListParams();
+  const [queries, setQueries] = useQueryPageListParams(12);
   const message = useMessage();
   const { submitting, postAsync } = usePost(ResourceApi.upload);
 

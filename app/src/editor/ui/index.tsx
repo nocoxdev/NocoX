@@ -1,41 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router';
-import { IconComponents, IconSettings } from '@tabler/icons-react';
-import { Layout, Spin } from 'antd';
-import { t } from 'i18next';
+import { useEffect } from 'react';
+import { Layout, Spin, Splitter } from 'antd';
 import { observer } from 'mobx-react-lite';
+import { useTheme } from 'styled-components';
 import ErrorMessage from '@/components/ErrorMessage';
+import { useApp } from '@/editor/selectors';
 import { useSite } from '@/selectors';
-import { useApp } from '../selectors';
-import Sider from './components/Sider';
+import Header from './Header';
+import Left from './Left';
+import Right from './Right';
+import Simulator from './Simulator';
 import { GlobalStyle } from './styled';
 
-const AppEditor = observer(() => {
+const Editor = observer(() => {
+  const theme = useTheme();
+
   const app = useApp();
-  const { pathname } = useLocation();
   const site = useSite();
-
-  const [selected, setSelected] = useState(() => {
-    const regex = /^\/edit\/([a-f0-9-]+)(\/([a-zA-Z0-9-_]+))?$/;
-    const match = pathname.match(regex);
-    return match?.[3] || 'editor';
-  });
-
-  const navigate = useNavigate();
-  const items = [
-    {
-      name: 'editor',
-      path: '',
-      title: t('Editor'),
-      icon: <IconComponents />,
-    },
-    {
-      name: 'setting',
-      title: t('Setting'),
-      path: 'setting',
-      icon: <IconSettings />,
-    },
-  ];
 
   useEffect(() => {
     app.widgetStore.loadWidgets();
@@ -52,21 +32,41 @@ const AppEditor = observer(() => {
   return (
     <Layout style={{ height: '100vh' }}>
       <GlobalStyle />
-      <Layout.Sider width={48} theme="light">
-        <Sider
-          menus={items}
-          selected={selected}
-          onSelected={(name, path) => {
-            setSelected(name);
-            navigate(path);
-          }}
-        />
-      </Layout.Sider>
+
+      <Layout.Header
+        style={{
+          padding: 0,
+          height: theme.heightHeader,
+          lineHeight: 1,
+          minWidth: 1080,
+        }}
+      >
+        <Header />
+      </Layout.Header>
       <Layout>
-        <Outlet />
+        <Splitter>
+          <Splitter.Panel
+            min={100}
+            max={550}
+            defaultSize={theme.widthDesignerLeftSidebar}
+          >
+            <Left />
+          </Splitter.Panel>
+          <Splitter.Panel>
+            <Simulator />
+          </Splitter.Panel>
+          <Splitter.Panel
+            key="right"
+            min={220}
+            max={500}
+            defaultSize={theme.widthDesignerRightSidebar}
+          >
+            <Right />
+          </Splitter.Panel>
+        </Splitter>
       </Layout>
     </Layout>
   );
 });
 
-export default AppEditor;
+export default Editor;

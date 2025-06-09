@@ -1,6 +1,4 @@
 import type { RouteObject } from 'react-router';
-import Editor from '@/editor/ui/Editor';
-import Setting from '@/editor/ui/Setting';
 import NoFoundPage from '@/pages/404';
 import Dashboard from '@/pages/dashboard';
 import MyApps from '@/pages/dashboard/myApps';
@@ -24,10 +22,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '/',
-    // loader: async () => {
-    //   await new Promise((resolve) => setTimeout(resolve, 1000));
-    //   return null;
-    // },
+
     children: [
       {
         path: '',
@@ -98,24 +93,6 @@ const routes: RouteObject[] = [
   {
     path: 'edit/:appId',
     element: <EditAppPage />,
-    children: [
-      {
-        index: true,
-        element: <Editor />,
-      },
-      {
-        path: 'data',
-        element: <Database />,
-      },
-      {
-        path: 'dictionary',
-        element: <Dictionary />,
-      },
-      {
-        path: 'setting',
-        element: <Setting />,
-      },
-    ],
   },
   {
     path: '404',

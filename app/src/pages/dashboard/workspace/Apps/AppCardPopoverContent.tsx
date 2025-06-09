@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IconTrash } from '@tabler/icons-react';
+import { IconTrash, IconUsers } from '@tabler/icons-react';
 import { Divider, Flex, Popconfirm } from 'antd';
 import { t } from 'i18next';
 import { observer } from 'mobx-react-lite';
@@ -10,6 +10,8 @@ import Loading from '@/components/Loading';
 import { useMessage } from '@/selectors';
 import { useCurApp } from '../selectors';
 import AppColorSeletor from './AppColorSeletor';
+import FaviconChanger from './FaviconChanger';
+import VisitControlModal from './VisitControlModal';
 
 const StyledActionItem = styled(Flex)`
   display: flex;
@@ -28,7 +30,7 @@ const StyledActionItem = styled(Flex)`
     background-color: ${({ theme }) => theme.controlItemBgHover};
   }
 
-  &.delete {
+  &.danger {
     color: ${({ theme }) => theme.colorErrorText};
     &:hover {
       background-color: ${({ theme }) => theme.colorErrorBgHover};
@@ -42,6 +44,8 @@ const PopoverContent = observer(() => {
 
   const [mode, setMode] = useState<ConfirmInputMode>('readonly');
   const [error, setError] = useState<string>('');
+  const [visitControlModalVisible, setVisitControlModalVisible] =
+    useState(false);
 
   if (!app) {
     return null;
@@ -94,9 +98,18 @@ const PopoverContent = observer(() => {
         onEdit={() => setMode('inputing')}
         error={error}
       />
+      <Divider style={{ marginBlock: 0 }} />
+      <FaviconChanger /> <Divider style={{ marginBlock: 0 }} />
       <AppColorSeletor />
       <Divider style={{ marginBlock: 0 }} />
-
+      <StyledActionItem
+        gap={6}
+        align="center"
+        onClick={() => setVisitControlModalVisible(true)}
+      >
+        <IconUsers size={13} stroke={2} />
+        {t('Visit Control')}
+      </StyledActionItem>
       <Popconfirm
         title={t('Delete app')}
         description={t('Are you sure to delete this app?')}
@@ -114,13 +127,17 @@ const PopoverContent = observer(() => {
       >
         <div>
           <Loading spinning={app.requestStates.delete.status === 'pending'}>
-            <StyledActionItem gap={6} className="delete" align="center">
+            <StyledActionItem gap={6} className="danger" align="center">
               <IconTrash size={13} stroke={2} />
               {t('Delete')}
             </StyledActionItem>
           </Loading>
         </div>
       </Popconfirm>
+      <VisitControlModal
+        open={visitControlModalVisible}
+        onClose={() => setVisitControlModalVisible(false)}
+      />
     </Flex>
   );
 });

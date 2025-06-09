@@ -1,5 +1,9 @@
 import type { ReactNode } from 'react';
-import type { MenuItemGroupType, MenuItemType } from 'antd/es/menu/interface';
+import type {
+  MenuDividerType,
+  MenuItemGroupType,
+  MenuItemType,
+} from 'antd/es/menu/interface';
 import type { IFilterInfo } from '@/components/DataFilter/type';
 import type { ISortItem } from '@/components/DataSort/type';
 import type { UiType } from './table';
@@ -110,7 +114,10 @@ export interface AvailableStatesType {
   items: StateItem[];
 }
 
-export type MergedMenuItemType = MenuItemType | MenuItemGroupType;
+export type MergedMenuItemType =
+  | MenuItemType
+  | MenuItemGroupType
+  | MenuDividerType;
 
 export interface QueryListParamsType {
   keywords?: string;

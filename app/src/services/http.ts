@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADMIN_BASE_URL, HOST, TOKEN_KEY } from '@/constants';
+import { HOST, TOKEN_KEY } from '@/constants';
 import { globalContextValue } from '@/context/GlobalContext';
 import { getRedirectUrl } from '@/utils/helpers';
 

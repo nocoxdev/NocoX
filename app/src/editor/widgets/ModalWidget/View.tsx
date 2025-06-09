@@ -43,7 +43,6 @@ const ModalView = ({ ref, ...props }: ModalViewProps) => {
       }}
       open={mode === 'edit' ? props.open : open}
       onCancel={() => setOpen(false)}
-      onClose={() => setOpen(false)}
       footer={footer || null}
       styles={{ body: { height } }}
     />

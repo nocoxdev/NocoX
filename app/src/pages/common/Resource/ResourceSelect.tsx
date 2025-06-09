@@ -37,7 +37,7 @@ const StyledResourceImageWrapper = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: ${({ theme }) => theme.colorFill};
+      background-color: ${({ theme }) => theme.colorBgMask};
     }
   }
 `;
@@ -50,9 +50,9 @@ const StyledResourceEmpty = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
   background-color: #f5f5f5;
   border-radius: ${({ theme }) => theme.borderRadius}px;
+  cursor: pointer;
 
   > span {
     margin-top: 10px;
@@ -100,6 +100,7 @@ export interface ResourceSelectProps {
   value?: string;
   hasInput?: boolean;
   style?: React.CSSProperties;
+  imageWrapperStyle?: React.CSSProperties;
   placeholder?: string;
   onChange?: (value: string) => void;
 }
@@ -110,6 +111,7 @@ const ResourceSelect = (
   const {
     hasInput = true,
     placeholder = t('Click select image'),
+    imageWrapperStyle,
     style,
   } = props;
   const [value, setValue] = useControllableValue<string>(props);
@@ -117,7 +119,10 @@ const ResourceSelect = (
 
   return (
     <StyledResourceWrapper style={style}>
-      <StyledResourceImageWrapper onClick={() => setOpen(true)}>
+      <StyledResourceImageWrapper
+        onClick={() => setOpen(true)}
+        style={imageWrapperStyle}
+      >
         {value ? (
           <StyledImgContainer>
             <div

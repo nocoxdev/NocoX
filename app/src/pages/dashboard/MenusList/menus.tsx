@@ -12,6 +12,7 @@ import AntdIcon from '@/components/AntdIcon';
 import type { MergedMenuItemType } from '@/types';
 
 export const menus: MergedMenuItemType[] = [
+  { type: 'divider' },
   {
     key: 'apps',
     label: t('Application'),
@@ -29,9 +30,10 @@ export const menus: MergedMenuItemType[] = [
       },
     ],
   },
+  { type: 'divider' },
   {
     key: 'data',
-    label: t('Data'),
+    label: t('Data and Resources'),
     type: 'group',
     children: [
       {
@@ -44,8 +46,14 @@ export const menus: MergedMenuItemType[] = [
         key: 'dictionary',
         label: t('Dictionary'),
       },
+      {
+        icon: <AntdIcon content={IconPhoto} size={14} />,
+        key: 'resource',
+        label: t('Resource'),
+      },
     ],
   },
+  { type: 'divider' },
   {
     key: 'system',
     label: t('System'),
@@ -60,11 +68,6 @@ export const menus: MergedMenuItemType[] = [
         icon: <AntdIcon content={IconUserCog} size={14} />,
         key: 'roles',
         label: t('Roles'),
-      },
-      {
-        icon: <AntdIcon content={IconPhoto} size={14} />,
-        key: 'resource',
-        label: t('Resource'),
       },
     ],
   },

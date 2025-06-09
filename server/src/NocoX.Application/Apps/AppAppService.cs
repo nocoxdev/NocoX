@@ -9,7 +9,6 @@ using NocoX.Localization;
 using NocoX.Workspaces;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Uow;
 
 namespace NocoX.Apps;

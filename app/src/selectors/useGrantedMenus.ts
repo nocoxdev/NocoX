@@ -15,6 +15,11 @@ export const useGrantedMenus = (menus: MergedMenuItemType[]) => {
   };
 
   return menus.reduce<MergedMenuItemType[]>((acc, menu) => {
+    if (menu.type === 'divider') {
+      acc.push(menu);
+      return acc;
+    }
+
     if (menu.type === 'group') {
       const group = menu as MenuItemGroupType;
 

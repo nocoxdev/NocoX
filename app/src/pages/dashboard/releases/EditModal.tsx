@@ -20,7 +20,7 @@ const StyledContent = styled.div`
     .ant-form-item-label {
       font-size: 13px;
       font-weight: 600;
-      color: ${({ theme }) => theme.textColorSecondary};
+      color: ${({ theme }) => theme.colorTextSecondary};
     }
   }
 `;
@@ -103,7 +103,7 @@ const EditModal = (props: EditModalProps) => {
                 hasInput={false}
                 style={{
                   width: 120,
-                  height: 80,
+                  height: 100,
                   padding: 4,
                   borderRadius: theme.borderRadius,
                   border: `1px solid ${theme.colorBorderSecondary}`,

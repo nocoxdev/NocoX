@@ -10,6 +10,7 @@ import { styled } from 'styled-components';
 import AntdIcon from '@/components/AntdIcon';
 import ImageView from '@/components/ImageView';
 import type { MyAppResponse } from '@/services/responses';
+import { fromNow } from '@/utils/helpers';
 
 const StyledAppCardContainer = styled.div`
   height: 100%;
@@ -90,6 +91,14 @@ const StyledAppCardActions = styled.div`
   }
 `;
 
+const StyledFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 8px;
+  color: ${({ theme }) => theme.colorTextSecondary};
+`;
+
 export interface AppCardProps {
   style?: CSSProperties;
   app: MyAppResponse;
@@ -125,6 +134,12 @@ const AppCard = observer((props: AppCardProps) => {
           </Flex>
         </StyledAppCardActions>
       </StyledAppCardContent>
+      <StyledFooter>
+        <span>
+          {t('Version')} {app.version}
+        </span>
+        <span>{fromNow(app.creationTime)}</span>
+      </StyledFooter>
     </StyledAppCardContainer>
   );
 });

@@ -8,6 +8,10 @@ public class MyAppGetDto
 
     public Guid AppId { get; set; }
 
+    public string Version { get; set; }
+
+    public DateTime CreationTime { get; set; }
+
     public string Title { get; set; }
 
     public string Color { get; set; }
